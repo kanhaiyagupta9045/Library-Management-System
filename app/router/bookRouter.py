@@ -5,7 +5,7 @@ from fastapi import HTTPException
 from app.models.bookModel import Book, UpdateBookModel
 from app.controllers.bookController import (
     add_book,
-    get_all_books,
+    get_all_book,
     retrieve_book,
     delete_book,
     update_book,
@@ -26,7 +26,7 @@ async def add_new_book(book: Book = Body(...)):
 
 @router.get("/get/books", response_description="List of All Books")
 async def get_all_books():
-    books = await get_all_books()
+    books = await get_all_book()
     return ResponseModel(books, "List of All books in Library")
 
 

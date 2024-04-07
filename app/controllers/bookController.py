@@ -39,7 +39,7 @@ async def add_book(book_data: dict) -> dict:
 
 
 # get all books
-async def get_all_books():
+async def get_all_book():
     book_collection = await Bookcollection()
     books = []
     async for book in book_collection.find():
@@ -75,7 +75,7 @@ async def delete_book(id: str):
 
 async def update_book(id: str, data: dict):
     # Return false if an empty request body is sent.
-    if not data: 
+    if not data:
         return False
 
     book_collection = await Bookcollection()
