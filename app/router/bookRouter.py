@@ -58,7 +58,7 @@ async def update_the_book(id: str, req: UpdateBookModel = Body(...)):
     updated_book = await update_book(id, req)
     if updated_book:
         return ResponseModel(
-            "Book with ID: {} name update is successful".format(id),
+            "Book with ID: {}update is successful".format(id),
             "Book updated successfully",
         )
 

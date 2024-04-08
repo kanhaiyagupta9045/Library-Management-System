@@ -14,13 +14,6 @@ async def connect_to_mongodb():
 
 async def close_mongodb_connection(client: AsyncIOMotorClient):
     client.close()
-    
 
-async def test_connection():
-    try:
-        client = await connect_to_mongodb()
-        await client.server_info()
-        print("Connected to MongoDB Atlas successfully.")
-    except Exception as e:
-        print(f"Failed to connect to MongoDB Atlas: {e}")
+
 

@@ -78,7 +78,7 @@ async def update_borrower(id: str, borrower: dict):
             return True
         else:
             return False
-    else :
+    else:
         return False
 
 

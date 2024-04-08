@@ -12,7 +12,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 load_dotenv()
-
 app = FastAPI()
 debug_mode = os.getenv("DEBUG") == "True"
 app.include_router(BookRouter, tags=["Books"])

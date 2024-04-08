@@ -26,6 +26,11 @@ def user_helper(user) -> dict:
         "is_librarian": user["is_librarian"],
     }
 
+def hash_password(password: str) -> str:
+    # Hash the password using bcrypt
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
+    return hashed_password.decode("utf-8")
 
 # get all users
 async def get_all_users():
@@ -42,25 +47,17 @@ async def add_user(user_data: dict) -> dict:
         return {"error": "Email is required"}
 
     email = user_data["email"]
-    # Check if a user with the given email already exists
     existing_user = await user_collection.find_one({"email": email})
     if existing_user:
         return {"error": "User with this email already exists"}
-
-    # Hash the password before inserting the user data
     if "password" in user_data:
         user_data["password"] = hash_password(user_data["password"])
-
     user = await user_collection.insert_one(user_data)
     inserted_user = await user_collection.find_one({"_id": user.inserted_id})
     return user_helper(inserted_user)
 
 
-def hash_password(password: str) -> str:
-    # Hash the password using bcrypt
-    salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
-    return hashed_password.decode("utf-8")
+
 
 
 # retrieve the specific user 
